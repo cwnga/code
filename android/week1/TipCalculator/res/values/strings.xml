@@ -4,7 +4,7 @@
     <string name="app_name">TipCalculator</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="tip_is">Tip is:  </string>
+    <string name="tip_is">Tip is:  $</string>
     <string name="ten_precent">10%</string>
     <string name="fifteen_precent">15%</string>
     <string name="twenty_precent">20%</string>
