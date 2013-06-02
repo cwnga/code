@@ -1,0 +1,12 @@
+.wrapper{
+    width: 80%;
+    background-color: #fff;
+    color: #333;
+    -webkit-border-radius: 0 10px 0 0;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+body {
+     background-color: #666;
+
+}
