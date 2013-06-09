@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SearchOptionsActivity" >
+
+    <TextView
+        android:id="@+id/textview_color_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner_image_size"
+        android:text="@string/color_filter" />
+
+    <Spinner
+        android:id="@+id/spinner_color_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_color_filter" />
+
+    <TextView
+        android:id="@+id/textview_spinner_site_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_image_type"
+        android:layout_marginTop="16dp"
+        android:text="@string/site_filter" />
+
+    <TextView
+        android:id="@+id/text_image_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/image_type" />
+
+    <Spinner
+        android:id="@+id/spinner_image_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_image_size" />
+
+    <TextView
+        android:id="@+id/textview_advance_search_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/advance_search_options" />
+
+    <TextView
+        android:id="@+id/textview_image_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_advance_search_options"
+        android:layout_marginTop="22dp"
+        android:text="@string/image_size" />
+
+    <Spinner
+        android:id="@+id/spinner_image_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/text_image_type" />
+
+    <EditText
+        android:id="@+id/editTextSiteFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textview_spinner_site_filter"
+        android:layout_toRightOf="@+id/textview_color_filter"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/btnAdvanceSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/search_label"
+        android:onClick="advanceSearch" />
+
+</RelativeLayout>
