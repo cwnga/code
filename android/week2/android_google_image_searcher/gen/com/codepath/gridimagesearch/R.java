@@ -28,24 +28,24 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int ic_setting=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000f;
-        public static final int btnAdvanceSearch=0x7f09000e;
-        public static final int btnOption=0x7f090004;
+        public static final int action_settings=0x7f09000e;
+        public static final int btnAdvanceSearch=0x7f09000d;
         public static final int btnSearch=0x7f090003;
-        public static final int editTextSiteFilter=0x7f09000d;
+        public static final int editTextSiteFilter=0x7f09000c;
         public static final int etQuery=0x7f090001;
         public static final int gvResults=0x7f090002;
         public static final int ivResult=0x7f090000;
-        public static final int spinner_color_filter=0x7f090007;
-        public static final int spinner_image_size=0x7f090006;
-        public static final int spinner_image_type=0x7f090009;
-        public static final int text_image_type=0x7f09000a;
-        public static final int textview_advance_search_options=0x7f09000c;
-        public static final int textview_color_filter=0x7f090005;
-        public static final int textview_image_size=0x7f09000b;
-        public static final int textview_spinner_site_filter=0x7f090008;
+        public static final int spinner_color_filter=0x7f090006;
+        public static final int spinner_image_size=0x7f090005;
+        public static final int spinner_image_type=0x7f090008;
+        public static final int text_image_type=0x7f090009;
+        public static final int textview_advance_search_options=0x7f09000b;
+        public static final int textview_color_filter=0x7f090004;
+        public static final int textview_image_size=0x7f09000a;
+        public static final int textview_spinner_site_filter=0x7f090007;
     }
     public static final class layout {
         public static final int activity_image_display=0x7f030000;

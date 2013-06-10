@@ -4,18 +4,20 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import com.loopj.android.http.*;
 public class MainActivity extends Activity {
-
+public AsyncHttpClient client;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		 client = new AsyncHttpClient();
 	}
 
 	@Override
@@ -30,6 +32,15 @@ public class MainActivity extends Activity {
 	 */
 	public void calculateTenPrecent(View v) {
 		Double tipPersent = 0.1;
+		   Log.v("ws","sss");
+		this.client.get("http://www.google.com", new AsyncHttpResponseHandler() {
+		    @Override
+		    public void onSuccess(String response) {
+		        System.out.print(response);
+		    	   Log.v("ws","ssssdfetwe");
+		        System.out.print(response);
+		    }
+		});
 		setCalculateTextView(tipPersent);
 	}
 

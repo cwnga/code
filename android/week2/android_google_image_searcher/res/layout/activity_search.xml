@@ -35,18 +35,9 @@
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/gvResults"
         android:layout_below="@+id/etQuery"
-        android:layout_toLeftOf="@+id/btnOption"
         android:onClick="onImageSearch"
         android:text="@string/search_label" />
-
-    <Button
-        android:id="@+id/btnOption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/gvResults"
-        android:layout_alignRight="@+id/gvResults"
-        android:text="@string/search_options" 
-        android:onClick="chageToOptionViews"/>
 
 </RelativeLayout>

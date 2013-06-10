@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -169,6 +170,21 @@ public class SearchActivity extends Activity {
 		Intent i = new Intent(this, SearchOptionsActivity.class);
 		i.putExtra(SearchOptationsIntentKey, this.searchOptations);
 		startActivity(i);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.action_settings:
+	    	Intent i = new Intent(this, SearchOptionsActivity.class);
+			i.putExtra(SearchOptationsIntentKey, this.searchOptations);
+			startActivity(i);
+	   
+	    
+	      
+	    }
+	    return true;
 	}
 
 }
