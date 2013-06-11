@@ -39,7 +39,9 @@ public class SearchActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		searchOptations = new SearchOptations();
+		
+		searchOptations =  getSearchOptations();
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 		setupViews();
@@ -56,22 +58,40 @@ public class SearchActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		
-		///cwnga add
-		gvResults.setOnScrollListener(new EndlessScrollListener(gvResults){
-			public void callback()
-			{
-				searchOptations.startNum=
-						searchOptations.startNum+10;
-						//setImageViewFromSeach();
+
+		// /cwnga add
+		gvResults.setOnScrollListener(new EndlessScrollListener(gvResults) {
+			public void callback() {
+				searchOptations.startNum = searchOptations.startNum + 10;
+				// setImageViewFromSeach();
 				setImageViewFromSeach();
-				
+
 			}
 
 		});
 
+		setEditTextValue();
+	}
+	public SearchOptations getSearchOptations()
+	{
+		
+		Intent i = getIntent();
+		SearchOptations searchOptationsTmp = (SearchOptations) i
+				.getSerializableExtra(this.SearchOptationsIntentKey);
+		if (searchOptationsTmp != null) {
+			searchOptations = searchOptationsTmp;
+		} else {
+			Log.v("test", "new SearchOptations");
+			searchOptations =  new SearchOptations();
+		
+		}
+		return searchOptations;
+		
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -79,6 +99,21 @@ public class SearchActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * 
+	 */
+	public void setEditTextValue()
+	{	
+		EditText editTextView = (EditText) findViewById(R.id.etQuery);
+	
+	    editTextView.setText(searchOptations.getQuery());
+	
+		
+	}
+
+	/**
+	 * 
+	 */
 	public void setupViews() {
 		etQuery = (EditText) findViewById(R.id.etQuery);
 		gvResults = (GridView) findViewById(R.id.gvResults);
@@ -86,19 +121,21 @@ public class SearchActivity extends Activity {
 
 	}
 
+	/**
+	 * @param query
+	 * @return
+	 */
 	public String getImageApiUrl(String query) {
-		Intent i = getIntent();
-		SearchOptations searchOptationsTmp = (SearchOptations) i
-				.getSerializableExtra(this.SearchOptationsIntentKey);
-		if (searchOptationsTmp != null) {
-			searchOptations = searchOptationsTmp;
-		}
+		searchOptations = this.getSearchOptations();
 		searchOptations.setQuery(query);
 		String url = searchOptations.getImageApiUrl();
 		return url;
 	}
-	public void setImageViewFromSeach()
-	{
+
+	/**
+	 * 
+	 */
+	public void setImageViewFromSeach() {
 		AsyncHttpClient client = new AsyncHttpClient();
 		// https://ajax.googleapis.com/ajax/services/search/images?q=Android&v=1.0
 		String imageApiUrl = this.getImageApiUrl(searchOptations.query);
@@ -110,38 +147,7 @@ public class SearchActivity extends Activity {
 				try {
 					imageJsonResults = response.getJSONObject("responseData")
 							.getJSONArray("results");
-					//imageResults.clear();
-					imageAdapter.addAll(ImageResult.fromJSONArray(imageJsonResults));
-					Log.d("DEBUG", imageResults.toString());
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public void onImageSearch(View v) {
-		String query = etQuery.getText().toString();
-		Toast.makeText(this, "Searching for " + query, Toast.LENGTH_SHORT)
-				.show();
-		searchOptations.query = query;
-		setImageViewFromSeach();
-		searchOptations.startNum=
-		searchOptations.startNum+1;
-		setImageViewFromSeach();
-		/*
-		AsyncHttpClient client = new AsyncHttpClient();
-		// https://ajax.googleapis.com/ajax/services/search/images?q=Android&v=1.0
-		String imageApiUrl = this.getImageApiUrl(query);
-		Log.v("imageApiUrl", imageApiUrl);
-		client.get(imageApiUrl, new JsonHttpResponseHandler() {
-			@Override
-			public void onSuccess(JSONObject response) {
-				JSONArray imageJsonResults = null;
-				try {
-					imageJsonResults = response.getJSONObject("responseData")
-							.getJSONArray("results");
-					imageResults.clear();
+					// imageResults.clear();
 					imageAdapter.addAll(ImageResult
 							.fromJSONArray(imageJsonResults));
 					Log.d("DEBUG", imageResults.toString());
@@ -150,21 +156,41 @@ public class SearchActivity extends Activity {
 				}
 			}
 		});
-		*/
 	}
 
+	/**
+	 * @param v
+	 */
+	public void onImageSearch(View v) {
+		String query = etQuery.getText().toString();
+		Toast.makeText(this, "Searching for " + query, Toast.LENGTH_SHORT)
+				.show();
+		searchOptations.query = query;
+		imageResults.clear();// reset
+		setImageViewFromSeach();
+	}
+
+	/**
+	 * @param v
+	 */
 	public void chageToOptionViews(View v) {
 		Intent i = new Intent(this, SearchOptionsActivity.class);
 		i.putExtra(SearchOptationsIntentKey, this.searchOptations);
 		startActivity(i);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			Intent i = new Intent(this, SearchOptionsActivity.class);
+			EditText editTextView = (EditText) findViewById(R.id.etQuery);
+			String query = editTextView.getText().toString();
+			this.searchOptations.setQuery(query);
 			i.putExtra(SearchOptationsIntentKey, this.searchOptations);
 			startActivity(i);
 

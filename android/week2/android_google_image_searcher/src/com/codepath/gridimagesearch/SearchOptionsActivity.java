@@ -27,7 +27,7 @@ public class SearchOptionsActivity extends Activity {
 	 * 
 	 */
 	protected void initStringArrayToArray() {
-		searchOptations = new SearchOptations();
+		//searchOptations = new SearchOptations();
 		imageSize = getResources().getStringArray(R.array.image_size);
 		imageColor = getResources().getStringArray(R.array.imgcolor);
 		imageType = getResources().getStringArray(R.array.image_type);
@@ -40,6 +40,7 @@ public class SearchOptionsActivity extends Activity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		searchOptations = getSearchOptations();
 		initStringArrayToArray();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_options);
@@ -49,13 +50,28 @@ public class SearchOptionsActivity extends Activity {
 		setSpinnerImageTypeData();
 
 	}
+	public SearchOptations getSearchOptations()
+	{
+		
+		Intent i = getIntent();
+		SearchOptations searchOptationsTmp = (SearchOptations) i
+				.getSerializableExtra(SearchActivity.SearchOptationsIntentKey);
+		if (searchOptationsTmp != null) {
+			searchOptations = searchOptationsTmp;
+		} else {
+			Log.v("test", "new SearchOptations");
+			searchOptations =  new SearchOptations();
+		
+		}
+		return searchOptations;
+		
+	}
 
 	/**
 	 * @param v
 	 */
 	public void advanceSearch(View v) {
 		Intent i = new Intent(this, SearchActivity.class);
-
 		EditText edtextView = (EditText) findViewById(R.id.editTextSiteFilter);
 		searchOptations.setAsSiteSearch(edtextView.getText().toString());
 		i.putExtra(SearchActivity.SearchOptationsIntentKey, searchOptations);
@@ -104,6 +120,9 @@ public class SearchOptionsActivity extends Activity {
 		SpinnerS.setOnItemSelectedListener(onItemSelectedListener);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -111,6 +130,10 @@ public class SearchOptionsActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * @author cwnga
+	 *
+	 */
 	class SpinnerImageSizeLister implements OnItemSelectedListener {
 
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -123,6 +146,10 @@ public class SearchOptionsActivity extends Activity {
 
 	}
 
+	/**
+	 * @author cwnga
+	 *
+	 */
 	class SpinnerColorFilterLister implements OnItemSelectedListener {
 
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -135,6 +162,10 @@ public class SearchOptionsActivity extends Activity {
 
 	}
 
+	/**
+	 * @author cwnga
+	 *
+	 */
 	class SpinnerImageTypeLister implements OnItemSelectedListener {
 
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,

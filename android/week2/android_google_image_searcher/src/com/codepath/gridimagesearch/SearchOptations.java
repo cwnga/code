@@ -27,6 +27,13 @@ public class SearchOptations implements Serializable {
 	}
 
 	/**
+	 * @return
+	 */
+	public String getQuery() {
+		return  query;
+	}
+
+	/**
 	 * @param asSiteSearch
 	 */
 	public void setAsSiteSearch(String asSiteSearch) {

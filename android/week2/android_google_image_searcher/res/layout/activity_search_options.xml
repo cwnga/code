@@ -21,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textview_color_filter" />
+        android:layout_below="@+id/textview_color_filter"
+        android:entries="@array/imgcolor" />
 
     <TextView
         android:id="@+id/textview_spinner_site_filter"
@@ -44,7 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textview_image_size" />
+        android:layout_below="@+id/textview_image_size" 
+       android:entries="@array/image_size"
+        />
 
     <TextView
         android:id="@+id/textview_advance_search_options"
@@ -69,7 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/text_image_type" />
+        android:layout_below="@+id/text_image_type"
+          android:entries="@array/image_type" />
 
     <EditText
         android:id="@+id/editTextSiteFilter"
