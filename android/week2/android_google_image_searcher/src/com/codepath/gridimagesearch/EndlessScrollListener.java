@@ -11,26 +11,36 @@ public class EndlessScrollListener implements OnScrollListener {
 	private boolean isLoading;
 	private boolean hasMorePages;
 	private int pageNumber = 0;
-	private RefreshList refreshList;
+
 	private boolean isRefreshing;
 
-	public EndlessScrollListener(GridView gridView, RefreshList refreshList) {
+	public EndlessScrollListener(GridView gridView) {
 		this.gridView = gridView;
 		this.isLoading = false;
 		this.hasMorePages = true;
-		this.refreshList = refreshList;
+		
 	}
 
+	
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
-		if (gridView.getLastVisiblePosition() + 1 == totalItemCount
-				&& !isLoading) {
+		int a = gridView.getLastVisiblePosition() + 1 ;
+
+		Log.v("getLastVisiblePosition", String.valueOf(a) );
+		Log.v("totalItemCount", String.valueOf(totalItemCount) );
+		Log.v("isLoading", String.valueOf(isLoading) );
+		int lastVisiblePosition = gridView.getLastVisiblePosition() + 1;
+		if (lastVisiblePosition == totalItemCount
+				&& !isLoading && lastVisiblePosition > 0 ) {
+			
 			isLoading = true;
+
+			callback();
 			if (hasMorePages && !isRefreshing) {
 				isRefreshing = true;
-				refreshList.onRefresh(pageNumber);
-				Log.v("view", String.valueOf(pageNumber));
+				callback();
+				
 			}
 		} else {
 			isLoading = false;
@@ -38,6 +48,10 @@ public class EndlessScrollListener implements OnScrollListener {
 
 	}
 
+	public void callback()
+	{
+		
+	}
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 
@@ -52,7 +66,4 @@ public class EndlessScrollListener implements OnScrollListener {
 		pageNumber = pageNumber + 1;
 	}
 
-	public interface RefreshList {
-		public void onRefresh(int pageNumber);
-	}
 }

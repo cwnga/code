@@ -58,30 +58,16 @@ public class SearchActivity extends Activity {
 		});
 		
 		///cwnga add
-		gvResults.setOnScrollListener(new OnScrollListener(){
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				Log.v("visibleItemCount", String.valueOf(visibleItemCount));
-				Log.v("totalItemCount", String.valueOf(totalItemCount));
-				if (visibleItemCount == totalItemCount) {
-					//searchOptations.startNum=visibleItemCount+1;
-					Log.v("startNum", String.valueOf(searchOptations.startNum));
-					//setImageViewFromSeach();
-					
-				}
-				
-				// TODO Auto-generated method stub
+		gvResults.setOnScrollListener(new EndlessScrollListener(gvResults){
+			public void callback()
+			{
+				searchOptations.startNum=
+						searchOptations.startNum+10;
+						//setImageViewFromSeach();
+				setImageViewFromSeach();
 				
 			}
 
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 		});
 
 	}
@@ -140,7 +126,8 @@ public class SearchActivity extends Activity {
 				.show();
 		searchOptations.query = query;
 		setImageViewFromSeach();
-		searchOptations.startNum++;
+		searchOptations.startNum=
+		searchOptations.startNum+1;
 		setImageViewFromSeach();
 		/*
 		AsyncHttpClient client = new AsyncHttpClient();
@@ -174,17 +161,15 @@ public class SearchActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.action_settings:
-	    	Intent i = new Intent(this, SearchOptionsActivity.class);
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			Intent i = new Intent(this, SearchOptionsActivity.class);
 			i.putExtra(SearchOptationsIntentKey, this.searchOptations);
 			startActivity(i);
-	   
-	    
-	      
-	    }
-	    return true;
+
+		}
+		return true;
 	}
 
 }
