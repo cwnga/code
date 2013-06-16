@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.oauth.OAuthLoginActivity;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -22,38 +23,40 @@ import android.widget.ListView;
 
 public class ListHomeTimeLineActivity extends OAuthLoginActivity<TwitterClient> {
 
+	protected User user;
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_home_time_line);
-		 StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads()
-	        		.detectDiskWrites().detectNetwork().penaltyLog().build());
-	
-		 this.getTweetListView(null);
-		
-	}
-	
+		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+				.detectDiskReads().detectDiskWrites().detectNetwork()
+				.penaltyLog().build());
+		//getTweetListView(null);
 
+	}
 
 	public void getTweetListView(View v) {
-		TwitterClient twitterClient = getClient();
-		final Context context = this;
-		if (twitterClient != null) {
-			twitterClient.getHomeTimeline(
-					new JsonHttpResponseHandler() {
-				public void onSuccess(JSONArray arg0) {
-					ArrayList<Tweet> tweetList = Tweet.fromJson(arg0);
-					ListView listView = (ListView) findViewById(R.id.list_hometimeline);
-					TweetArrayAdapter adapter = new TweetArrayAdapter(context,
-							tweetList);
-					listView.setAdapter(adapter);
 
-				}
+		TwitterHandler twitterHandler = new TwitterHandler() {
 
-			});
-		}
+			public void callback_getHomeTimeline(ArrayList<Tweet> tweet) {
+				TweetArrayAdapter adapter = new TweetArrayAdapter(
+						getBaseContext(), tweet);
+				ListView listView = (ListView) findViewById(R.id.list_hometimeline);
+				listView.setAdapter(adapter);
+			}
 
+		};
+		twitterHandler.getHomeTimeline(getClient());
+
+		getClient().getHomeTimeline(new AsyncHttpResponseHandler() {
+
+			public void onSuccess(JSONArray a) {
+				Log.v("test", a.toString());
+			}
+		});
 	}
 
 	@Override
@@ -74,6 +77,10 @@ public class ListHomeTimeLineActivity extends OAuthLoginActivity<TwitterClient> 
 		// TODO Auto-generated method stub
 
 	}
-	
+
+	public void postTweet(Menu m) {
+		Intent i = new Intent(this, PostTweetActivity.class);
+		startActivity(i);
+	}
 
 }

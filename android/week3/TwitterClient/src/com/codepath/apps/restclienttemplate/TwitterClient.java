@@ -1,5 +1,8 @@
 package com.codepath.apps.restclienttemplate;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.scribe.builder.api.Api;
 import org.scribe.builder.api.TwitterApi;
 
@@ -40,7 +43,25 @@ public class TwitterClient extends OAuthBaseClient {
 		this.context = context;
 
 	}
-	public void getCurrentUserInfo(AsyncHttpResponseHandler handler) 
+	
+	public void postTweet(String status, AsyncHttpResponseHandler handler) 
+	{
+		String apiUrl = "statuses/update.json";
+		RequestParams params = new RequestParams();
+		try {
+			params.put("status", URLEncoder.encode(status,"UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.v(this.getClass().getName(), "getHomeTimeline");
+		post(apiUrl, handler, params);
+		
+	}
+	/**
+	 * @param handler
+	 */
+	public void getCurrentUser(AsyncHttpResponseHandler handler) 
 	{
 		String apiUrl = "account/verify_credentials.json";
 		RequestParams params = new RequestParams();
@@ -71,6 +92,21 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("format", "json");
 		client.get(fullApiUrl, params, handler);
 	}
+	
+
+	/**
+	 * @param apiUrl
+	 * @param handler
+	 * @param params
+	 */
+	public void post(String apiUrl, AsyncHttpResponseHandler handler,
+			RequestParams params) {
+		String fullApiUrl = getApiUrl(apiUrl);
+		params.put("format", "json");
+		client.post(fullApiUrl, params, handler);
+	}
+
+
 
 	/*
 	 * 1. Define the endpoint URL with getApiUrl and pass a relative path to the

@@ -9,5 +9,7 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_post_tweets">PostTweets</string>
     <string name="title_activity_list_home_time_line">ListHomeTimeLineActivity</string>
+    <string name="title_activity_user_view">UserView</string>
+    <string name="title_activity_post_tweet">PostTweetActivity</string>
 
 </resources>
