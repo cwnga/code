@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -62,7 +63,7 @@ public class ListHomeTimeLineActivity extends OAuthLoginActivity<TwitterClient> 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.welcome, menu);
+		getMenuInflater().inflate(R.menu.list_home_time_line, menu);
 		return true;
 	}
 
@@ -78,9 +79,10 @@ public class ListHomeTimeLineActivity extends OAuthLoginActivity<TwitterClient> 
 
 	}
 
-	public void postTweet(Menu m) {
+	public void postTweet(MenuItem m) {
 		Intent i = new Intent(this, PostTweetActivity.class);
 		startActivity(i);
 	}
+	
 
 }

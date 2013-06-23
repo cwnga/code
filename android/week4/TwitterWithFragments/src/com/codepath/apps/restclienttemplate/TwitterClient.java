@@ -30,8 +30,8 @@ public class TwitterClient extends OAuthBaseClient {
 	private static final long serialVersionUID = 1L;
 	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class;
 	public static final String REST_URL = "https://api.twitter.com/1.1";
-	public static final String REST_CONSUMER_KEY = "yZos47SzYPXHObtd9jqGRg";
-	public static final String REST_CONSUMER_SECRET = "1hsyHbavvvypcywDFkvUVnqrkHkC088uGK8Pw7KVj0";
+	public static final String REST_CONSUMER_KEY = "uH7IibLGx8MfIg7RPjyqw";
+	public static final String REST_CONSUMER_SECRET = "HD3wUix3xBJQBzhekedUmQEmkJVDpQFDs1l5rO2C2c";
 	public static final String REST_CALLBACK_URL = "http://anson.com";
 
 	public Context context;
