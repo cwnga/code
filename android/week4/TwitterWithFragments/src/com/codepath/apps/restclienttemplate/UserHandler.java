@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import org.json.JSONObject;
 
+import com.codepath.apps.client.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -13,12 +14,12 @@ public class UserHandler {
 		client.getCurrentUser(new JsonHttpResponseHandler() {
 			public void onSuccess(JSONObject arg0) {
 				user = User.fromJson(arg0);
-				callback();
+				callback_getCurrentUser();
 			}
 		});
 		return user;
 	}
-	public void callback(){
+	public void callback_getCurrentUser(){
 		
 	}
 

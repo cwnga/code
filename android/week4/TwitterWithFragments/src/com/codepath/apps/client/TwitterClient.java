@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.client;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -77,6 +77,19 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = "statuses/home_timeline.json";
 		RequestParams params = new RequestParams();
 		params.put("format", "json");
+		Log.v(this.getClass().getName(), "getHomeTimeline");
+		get(apiUrl, handler, params);
+	}
+	
+	/**
+	 * @param handler
+	 */
+	public void getMensionsTimeline(AsyncHttpResponseHandler handler) {
+		String apiUrl = "statuses/mentions_timeline.json";
+		RequestParams params = new RequestParams();
+		params.put("format", "json");
+		params.put("count","25");
+		
 		Log.v(this.getClass().getName(), "getHomeTimeline");
 		get(apiUrl, handler, params);
 	}

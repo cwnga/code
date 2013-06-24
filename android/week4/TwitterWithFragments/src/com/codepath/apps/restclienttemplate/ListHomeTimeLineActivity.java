@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
+import com.codepath.apps.client.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.oauth.OAuthLoginActivity;
@@ -80,7 +81,7 @@ public class ListHomeTimeLineActivity extends OAuthLoginActivity<TwitterClient> 
 	}
 
 	public void postTweet(MenuItem m) {
-		Intent i = new Intent(this, PostTweetActivity.class);
+		Intent i = new Intent(this, AndroidViewPagerActivity.class);
 		startActivity(i);
 	}
 	

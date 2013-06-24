@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.codepath.apps.client.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -55,6 +56,24 @@ public class TwitterHandler {
 		});
 
 	}
+	
+
+	public void getMensionsTimeline(TwitterClient client) {
+
+		client.getMensionsTimeline(new JsonHttpResponseHandler() {
+			public void onSuccess(JSONArray arg0) {
+				Log.v("onSuccess JSONArray arg0", arg0.toString());
+				ArrayList<Tweet> tweet = Tweet.fromJson(arg0);
+				callback_getMensionsTimeline(tweet);
+				callback(arg0);
+			}
+			public void onSuccess(JSONObject arg0) {
+				Log.v("onSuccess JSONObject arg0", arg0.toString());
+			
+			}
+		});
+
+	}
 
 	public void callback(Object obj) {
 
@@ -65,6 +84,9 @@ public class TwitterHandler {
 	}
 
 	public void callback_getHomeTimeline(ArrayList<Tweet> tweet) {
+
+	}
+	public void callback_getMensionsTimeline(ArrayList<Tweet> tweet) {
 
 	}
 }

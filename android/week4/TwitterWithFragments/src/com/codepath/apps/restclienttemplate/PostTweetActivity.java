@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import com.codepath.apps.client.TwitterClient;
 import com.codepath.oauth.OAuthLoginActivity;
 
 import android.os.Bundle;
