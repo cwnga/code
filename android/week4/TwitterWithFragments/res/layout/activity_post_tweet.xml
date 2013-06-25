@@ -17,14 +17,7 @@
         android:text="Post"
         android:onClick="postTweet" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnPost"
-        android:layout_alignBottom="@+id/btnPost"
-        android:layout_toLeftOf="@+id/btnPost"
-        android:text="Back" />
+
 
     <EditText
         android:id="@+id/edtTweets"

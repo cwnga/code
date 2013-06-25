@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package adapter;
 
 import java.util.List;
 
@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.codepath.apps.restclienttemplate.ImageCacheHandler;
+import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.R.id;
+import com.codepath.apps.restclienttemplate.R.layout;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 public class TweetArrayAdapter extends ArrayAdapter<Tweet> {

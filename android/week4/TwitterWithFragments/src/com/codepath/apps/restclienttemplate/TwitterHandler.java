@@ -57,6 +57,23 @@ public class TwitterHandler {
 
 	}
 	
+	public void getUserTimeline(TwitterClient client) {
+
+		client.getUserTimeline(new JsonHttpResponseHandler() {
+			public void onSuccess(JSONArray arg0) {
+				Log.v("onSuccess JSONArray arg0", arg0.toString());
+				ArrayList<Tweet> tweet = Tweet.fromJson(arg0);
+				callback_getUserTimeline(tweet);
+				callback(arg0);
+			}
+			public void onSuccess(JSONObject arg0) {
+				Log.v("onSuccess JSONObject arg0", arg0.toString());
+			
+			}
+		});
+
+	}
+	
 
 	public void getMensionsTimeline(TwitterClient client) {
 
@@ -87,6 +104,9 @@ public class TwitterHandler {
 
 	}
 	public void callback_getMensionsTimeline(ArrayList<Tweet> tweet) {
+
+	}
+	public void callback_getUserTimeline(ArrayList<Tweet> tweet) {
 
 	}
 }

@@ -13,5 +13,10 @@
     <string name="title_activity_post_tweet">PostTweetActivity</string>
     <string name="Post">Post</string>
     <string name="title_activity_android_view_pager">AndroidViewPagerActivity</string>
+    <string name="title_activity_tabs">Tabs</string>
+    <string name="Profile">Profile</string>
+    <string name="title_activity_fragment_user_profile">FragmentUserProfile</string>
+    <string name="title_activity_user_profile">UserProfile</string>
+    <string name="back">back</string>
 
 </resources>

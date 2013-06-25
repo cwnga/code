@@ -1,8 +1,11 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.os.Bundle;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class UserView extends Activity {
 
@@ -18,5 +21,6 @@ public class UserView extends Activity {
 		getMenuInflater().inflate(R.menu.user_view, menu);
 		return true;
 	}
+
 
 }

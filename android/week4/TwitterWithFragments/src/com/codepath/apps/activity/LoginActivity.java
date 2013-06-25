@@ -1,14 +1,19 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.activity;
 
 import java.io.Serializable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
 import com.codepath.apps.client.TwitterClient;
+import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.Tabs;
+import com.codepath.apps.restclienttemplate.R.layout;
+import com.codepath.apps.restclienttemplate.R.menu;
 import com.codepath.oauth.OAuthLoginActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -22,8 +27,11 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// twitterClient = new TwitterClient(this.getBaseContext());
-		
+
 		super.onCreate(savedInstanceState);
+		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+				.detectDiskReads().detectDiskWrites().detectNetwork()
+				.penaltyLog().build());
 		setContentView(R.layout.activity_login);
 	}
 
@@ -38,7 +46,7 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 	// i.e Display application "homepage"
 	@Override
 	public void onLoginSuccess() {
-		i = new Intent(this, ListHomeTimeLineActivity.class);
+		i = new Intent(this, Tabs.class);
 		startActivity(i);
 	}
 

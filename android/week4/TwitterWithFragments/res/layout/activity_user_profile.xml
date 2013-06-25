@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".UserProfile" >
+
+    <fragment
+        android:id="@+id/fragment_container_user_timeline"
+        android:name="fragment_view.FragmentUserTimeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/fragment_container_user_profile"
+        android:layout_below="@+id/fragment_container_user_profile"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/fragment_container_user_profile"
+        android:layout_below="@+id/fragment_container_user_profile"
+        android:max="100"
+        android:progress="100" />
+
+    <fragment
+        android:id="@+id/fragment_container_user_profile"
+        android:name="fragment_view.FragmentUserProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>

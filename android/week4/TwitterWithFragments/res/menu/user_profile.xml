@@ -1,5 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -8,5 +7,6 @@
         android:icon="@drawable/leftturnarrow32"
         android:onClick="swtichToTab"
         />
+
 
 </menu>

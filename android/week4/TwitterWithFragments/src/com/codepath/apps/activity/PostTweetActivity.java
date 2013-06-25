@@ -1,12 +1,19 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.activity;
 
 import com.codepath.apps.client.TwitterClient;
+import com.codepath.apps.restclienttemplate.R;
+import com.codepath.apps.restclienttemplate.Tabs;
+import com.codepath.apps.restclienttemplate.TwitterHandler;
+import com.codepath.apps.restclienttemplate.R.id;
+import com.codepath.apps.restclienttemplate.R.layout;
+import com.codepath.apps.restclienttemplate.R.menu;
 import com.codepath.oauth.OAuthLoginActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -35,7 +42,7 @@ public class PostTweetActivity extends OAuthLoginActivity<TwitterClient> {
 		if (status.length() > 0) {
 			TwitterHandler twitterHandler = new TwitterHandler();
 			twitterHandler.postTweet(status, getClient());
-			Intent i = new Intent(this, ListHomeTimeLineActivity.class);
+			Intent i = new Intent(this, Tabs.class);
 			startActivity(i);
 		}
 
@@ -50,6 +57,12 @@ public class PostTweetActivity extends OAuthLoginActivity<TwitterClient> {
 	@Override
 	public void onLoginSuccess() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public void swtichToTab(MenuItem mi) {
+		Intent i = new Intent(this, Tabs.class);
+		startActivity(i);
 
 	}
 
